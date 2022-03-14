@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/fostingRestaurant/respost.css">
+</head>
+<body>
+<!--헤드바-->
+<header>
+    <div class="header_left">
+        <a href="/" class="header_logo"><img src="/upload/file/fostingLogo.png" alt=""></a>
+        <ul class="header_menu">
+            <li><a href="/Restaurant/AllList" class="food_list">음식 목록</a></li>
+            <li><a href="/Restaurant/Map" class="food_map">지도</a></li>
+            <li><a href="/Restaurant/post" class="respost">나의 맛집 알리기</a></li>
+            <li><a href="/logout" class="logout hidden" id="header_logout">로그아웃</a></li>
+            <li><a href="/login" class="login" id="header_login">로그인</a></li>
+            <li><a href="/signUp" class="signUp" id="header_signUp">회원가입</a></li>
+        </ul>
+    </div>
+    <div class="header_right">
+        <form action="/list/search" method="post">
+            <input type="text" placeholder="음식점 또는 키워드               " name="search" autocomplete="off">
+            <button type="submit">검색</button>
+        </form>
+    </div>
+</header>
+<div class="container">
+    <div class="resfost_container">
+        <p class="resfost_text">Fosting...</p>
+        <form action="/Restaurant/post" enctype="multipart/form-data" id="resform">
+            <div class="head">
+                <input type="text" name="resPostName" class="postName" id="resPostName"
+                       placeholder="음식점이 게시될 제목을 적어주세요                                        "
+                       autofocus autocomplete="off">
+            </div>
+            <div class="head_context">
+                <!--                <input type="text" name="resCategory" placeholder="음식점 분류를 적어주세요 //라디오로 바꾸기" autocomplete="off">-->
+                <select name="resCategory" form="resform" id="resCategory">
+                    <option value="분류">분류</option>
+                    <option value="중국집">중국집</option>
+                    <option value="분식집">분식집</option>
+                    <option value="치킨">치킨</option>
+                    <option value="일식">일식</option>
+                    <option value="파스타">파스타</option>
+                    <option value="카페">카페</option>
+                    <option value="빵">빵</option>
+                </select>
+                <select name="resLocate" form="resform" id="resLocate">
+                    <option value="지역">지역</option>
+                    <option value="서울">서울</option>
+                    <option value="인천">인천</option>
+                    <option value="부산">부산</option>
+                    <option value="대구">대구</option>
+                    <option value="광주">광주</option>
+                    <option value="대전">대전</option>
+                    <option value="울산">울산</option>
+                </select>
+                <input type="text" name="resName" id="resName" placeholder="음식점 이름을 적어주세요          " autocomplete="off">
+            </div>
+            <div class="text">
+                <textarea id="ta" class="resComment" name="resComment"
+                          style="width:100%;min-height:300px;overflow-y:hidden"
+                          placeholder="내용을 입력해주세요." autocomplete="off"></textarea>
+                <textarea id="xt" style="width:300px;height:1px;overflow-y:hidden;position:absolute;top:-9px"
+                          disabled></textarea>
+            </div>
+            <div class="post">
+                <input class="file_upload" type="file" name="upload" id="imgFile" multiple/>
+                <button id="Button">포스팅 하기</button>
+            </div>
+            <input type="text" style="display : none;" name="resLatLng" id="resLatLng">
+        </form>
+    </div>
+    <div class="side">
+        <div class="SOMETHING">
+            무언가 들어갈곳
+        </div>
+        <div class="map" id="map">
+
+        </div>
+    </div>
+</div>
+<!--<script src="/js/header.js"></script>-->
+<script type="text/javascript"
+        src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=sgjcral7lb"></script>
+<script src="/js/Restaurant/textarea.js"></script>
+<script src="/js/Restaurant/LatLngMapApi.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/Restaurant/imgAndData.js"></script>
+</body>
+</html>

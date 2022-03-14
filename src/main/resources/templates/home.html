@@ -1,0 +1,112 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <!--
+    <link rel="stylesheet" href="/css/main.css">
+    <img src="/upload/file/20220202--212929646_799.png" alt="" width="100" height="100"/> 가져오는 경로 어떻게 되는거지? 어째서?
+    -->
+</head>
+<body>
+<!--헤드바-->
+<header>
+    <div class="header_left">
+        <a href="/" class="header_logo"><img src="/upload/file/fostingLogo.png" alt=""></a>
+        <ul class="header_menu">
+            <li><a href="/Restaurant/AllList" class="food_list">음식 목록</a></li>
+            <li><a href="/Restaurant/Map" class="food_map">지도</a></li>
+            <li><a href="/Restaurant/post" class="respost">나의 맛집 알리기</a></li>
+            <li><a href="/logout" class="logout hidden" id="header_logout">로그아웃</a></li>
+            <li><a href="/login" class="login" id="header_login">로그인</a></li>
+            <li><a href="/signUp" class="signUp" id="header_signUp">회원가입</a></li>
+        </ul>
+    </div>
+    <div class="header_right">
+        <form action="/Restaurant/list/search" method="post">
+            <input type="text" placeholder="음식점 또는 키워드               " name="search" autocomplete="off">
+            <button type="submit">검색</button>
+        </form>
+    </div>
+</header>
+<!--부가 기능-->
+<div class="container">
+    <div class="describe">
+        <span>Fosting에서 다양한 지역의 맛집 포스팅을 탐방하세요</span>
+        <ul class="main_describe">
+            <li><a href="/Restaurant/AllList">리스트</a></li>
+            <li><a href="/Restaurant/Map">지도</a></li>
+            <li><a href="/Restaurant/post">포스팅하기</a></li>
+        </ul>
+    </div>
+    <!--음식점 포스팅-->
+    <h3>방금 등록된 맛집
+        <small><a href="/Restaurant/AllList">더보기</a></small>
+    </h3>
+    <div class="fosting_block">
+        <div class="fosting_content" th:each="resDescList : ${resDescLists}">
+            <a th:href="@{/Restaurant/list/{resIdx}(resIdx=${resDescList.resIndex})}" methods="post"><img
+                    th:src="@{/upload/file/{ril}(ril=${resDescList.resImgLocate})}" alt=""></a>
+            <ul>
+                <li th:text="${resDescList.resPostName}">포스팅 된 이름</li>
+                <li th:text="${resDescList.resName}">음식점 위치</li>
+                <li th:text="${resDescList.resIndex}">게시된 날짜</li>
+                <li th:text="${resDescList.resRecommend}">별점</li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <h3>인기 많은 맛집
+        <smal><a href="/Restaurant/AllList">더보기</a></smal>
+    </h3>
+    <div class="fosting_block">
+        <div class="fosting_content" th:each="resRecommendAscList : ${resRecommendAscLists}">
+            <a th:href="@{/Restaurant/list/{resIdx}(resIdx=${resRecommendAscList.resIndex})}" methods="post"><img
+                    th:src="@{/upload/file/{ril}(ril=${resRecommendAscList.resImgLocate})}" alt=""></a>
+            <ul>
+                <li th:text="${resRecommendAscList.resPostName}">포스팅 될 이름</li>
+                <li th:text="${resRecommendAscList.resName}">음식점 위치</li>
+                <li th:text="${resRecommendAscList.resIndex}">게시된 날짜</li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <h3>현재 추천 맛집
+        <smal><a href="/Restaurant/AllList">더보기</a></smal>
+    </h3>
+    <div class="fosting_block">
+        <div class="fosting_content" th:each="resRandomList : ${resRandomLists}">
+            <a th:href="@{/Restaurant/list/{resIdx}(resIdx=${resRandomList.resIndex})}" methods="post"><img
+                    th:src="@{/upload/file/{ril}(ril=${resRandomList.resImgLocate})}" alt=""></a>
+            <ul>
+                <li th:text="${resRandomList.resPostName}">포스팅 될 이름</li>
+                <li th:text="${resRandomList.resName}">음식점 위치</li>
+                <li th:text="${resRandomList.resIndex}">게시된 날짜</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<hr>
+<!--Footer 저작권 및 SNS-->
+<div class="copy_right">
+    <div class="copyright">All rights reserve by MinSik</div>
+    <div class="sns">
+        <ul>
+            <li><a href=""><img src="" alt="">페이스북</a></li>
+            <li><a href=""><img src="" alt="">인스타</a></li>
+            <li><a href=""><img src="" alt="">카톡</a></li>
+        </ul>
+    </div>
+    <a href="/test">test</a>
+</div>
+<script src="/js/header.js"></script>
+</body>
+</html>

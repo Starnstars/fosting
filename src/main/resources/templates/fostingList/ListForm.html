@@ -1,0 +1,128 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--JS-->
+    <script type="text/javascript"
+            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=sgjcral7lb"></script>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/fostingList/fostingListForm.css">
+</head>
+<body>
+<!--헤드바-->
+<header>
+    <div class="header_left">
+        <a href="/" class="header_logo"><img src="/upload/file/fostingLogo.png" alt=""></a>
+        <ul class="header_menu">
+            <li><a href="/Restaurant/AllList" class="food_list">음식 목록</a></li>
+            <li><a href="/Restaurant/Map" class="food_map">지도</a></li>
+            <li><a href="/Restaurant/post" class="respost">나의 맛집 알리기</a></li>
+            <li><a href="/logout" class="logout hidden" id="header_logout">로그아웃</a></li>
+            <li><a href="/login" class="login" id="header_login">로그인</a></li>
+            <li><a href="/signUp" class="signUp" id="header_signUp">회원가입</a></li>
+        </ul>
+    </div>
+    <div class="header_right">
+        <form action="/Restaurant/list/search" method="post">
+            <input type="text" placeholder="음식점 또는 키워드               " name="search" autocomplete="off">
+            <button type="submit">검색</button>
+        </form>
+    </div>
+</header>
+<!--음식 목록-->
+<div class="fost_container">
+    <p class="fost_Name" th:text="${restaurantInfo.resPostName}">포스팅 된 이름
+        <p th:text="${restaurantInfo.resMember}">작성자</p>
+    </p>
+    <div class="fost_contents">
+        <div class="fost_content">
+            <img th:src="@{/upload/file/{ril}(ril=${restaurantInfo.resImgLocate})}" alt="">
+            <p th:text="${restaurantInfo.resComment}">포스팅 내용</p>
+        </div>
+        <div class="fost_map_container">
+            <div class="fost_SOMETHING">무언가가 들어갈 div</div>
+            <div class="fost_map" id="fost_map">
+                <input th:value="${restaurantInfo.resLatLng}" class="map_latlng"></input>
+            </div>
+        </div>
+    </div>
+    <div class="fost_star">
+        <span id="resRecommend" th:text="${restaurantInfo.resRecommend}">현재 별점</span>
+<!--        <span id="resRecommend" th:text="${restaurantInfo.resRecommend}">현재 별점</span>-->
+        <form action="/list/recommend" method="post">
+            <div class="star"></div>
+            <input type="hidden" name="recIndex" id="recIndex" th:value="${restaurantInfo.resIndex}">
+            <input type="range" min="0" max="5" step="0.5" name="recommend" id="recommend">
+            <button id="recButton">별점주기</button>
+        </form>
+    </div>
+    <div class="fost_info">
+        <span th:text="${restaurantInfo.resName}">가게 이름</span>
+        <span th:text="${restaurantInfo.resLocate}">가게 위치</span>
+    </div>
+    <span th:text="${restaurantInfo.resPostDate}">작성일</span>
+    <hr>
+    <div class="member_Comments">
+        <div class="member_Comment" th:each="restaurantComment : ${restaurantComments}">
+            <p class="writer" id="commentMember" th:text="${restaurantComment.commentMember}">작성자</p>
+            <p class="time" id="commentTime" th:text="${restaurantComment.commentTime}">작성일</p>
+            <p class="comment" id="getComment" th:text="${restaurantComment.comment}">내용</p>
+        </div>
+
+        <form action="/list/comments" method="post" id="commentForm">
+            <input type="hidden" name="resIndex" id="resIndex" th:value="${restaurantInfo.resIndex}">
+            <input type="text" id="postComment" placeholder="댓글을 작성해주세요" autocomplete="off">
+            <button id="commentButton">댓글 작성</button>
+        </form>
+    </div>
+    <div class="update_form">
+        <form action="/Restaurant/update" method="get" id="updateForm">
+            <input type="hidden" name="resIndex" th:value="${restaurantInfo.resIndex}">
+            <button type="submit" id="updateButton">게시글 수정하기</button>
+        </form>
+        <form action="/Restaurant/delete" method="get" id="deleteForm">
+            <input type="hidden" name="resIndex" th:value="${restaurantInfo.resIndex}">
+            <button type="submit" id="deleteButton">게시글 삭제하기</button>
+        </form>
+    </div>
+</div>
+<script src="/js/header.js"></script>
+<script src="/js/fostingList/ListForm.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/fostingList/resRecommendAjax.js"></script>
+<script src="/js/fostingList/commentAjax.js"></script>
+<script src="/js/fostingList/fostingUpdate.js"></script>
+<script>
+    $("#deleteButton").click((event)=>{
+        event.preventDefault();
+        $.ajax({
+            url : "/Restaurant/Delete",
+            type : "get",
+            dataType : "json",
+            data : {
+                resIndex : $("#resIndex").val()
+            },
+            success : function(res){
+                  if(res.false==false){
+                        alert("로그인 후 이용해주세요.");
+                    } else if(res.noCookie=="noCookie"){
+                        alert("포스팅 삭제 권한이 없습니다.");
+                    } else{
+                        alert("성공적으로 포스팅을 삭제했습니다.");
+                        var form = document.getElementById("deleteForm");
+                        form.submit();
+                    }
+
+            }
+        });
+    })
+</script>
+</body>
+</html>

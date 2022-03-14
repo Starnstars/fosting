@@ -1,0 +1,59 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script type="text/javascript"
+            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=sgjcral7lb"></script>
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/fostingMap/fostingMap.css">
+</head>
+<body>
+<!--헤드바-->
+<header>
+    <div class="header_left">
+        <a href="/" class="header_logo"><img src="/upload/file/fostingLogo.png" alt=""></a>
+        <ul class="header_menu">
+            <li><a href="/Restaurant/AllList" class="food_list">음식 목록</a></li>
+            <li><a href="/Restaurant/Map" class="food_map">지도</a></li>
+            <li><a href="/Restaurant/post" class="respost">나의 맛집 알리기</a></li>
+            <li><a href="/logout" class="logout hidden" id="header_logout">로그아웃</a></li>
+            <li><a href="/login" class="login" id="header_login">로그인</a></li>
+            <li><a href="/signUp" class="signUp" id="header_signUp">회원가입</a></li>
+        </ul>
+    </div>
+    <div class="header_right">
+        <form action="/Restaurant/list/search" method="post">
+            <input type="text" placeholder="음식점 또는 키워드               " name="search" autocomplete="off">
+            <button type="submit">검색</button>
+        </form>
+    </div>
+</header>
+<div class="container">
+    <div class="list" style="height : calc(100vh - 70px);">
+        <div class="fosting_block">
+            <div class="fosting_content" th:each="restaurantInfo : ${restaurantInfos}">
+                <input th:value="${restaurantInfo.resLatLng}" class="map_latlng" style="display : none;"></input>
+                <input th:value="${restaurantInfo.resCategory}" class="res_category" style="display : none;"></input>
+                <a th:href="@{/Restaurant/list/{resId}(resId=${restaurantInfo.resIndex})}" methods="post"><img
+                        th:src="@{/upload/file/{ril}(ril=${restaurantInfo.resImgLocate})}" alt=""></a>
+                <ul>
+                    <li th:text="${restaurantInfo.resPostName}">포스팅 될 이름</li>
+                    <li th:text="${restaurantInfo.resName}">음식점 위치</li>
+                    <li th:text="${restaurantInfo.resIndex}">게시된 날짜</li>
+                    <li th:text="${restaurantInfo.resRecommend}">별점</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="map" style="height : calc(100vh - 70px);" id="map"></div>
+</div>
+<script src="/js/fostingMap/fostingMap.js"></script>
+</body>
+</html>

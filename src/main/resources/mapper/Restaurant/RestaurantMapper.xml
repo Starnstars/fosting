@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lee.fosting.Restaurant.repository.RestaurantMapper">
+
+    <insert id="post">
+        INSERT INTO restaurantInfo (resIndex    ,resCategory   ,resPostName    ,resName    ,resComment      ,resLocate      ,resMember    ,resRecommend    ,resPostDate    ,resImgLocate    ,resLatLng    ,resRecommendCookie)
+        VALUES                     (#{resIndex} ,#{resCategory},#{resPostName} ,#{resName} ,#{resComment}   ,#{resLocate}   ,#{resMember} ,#{resRecommend} ,#{resPostDate} ,#{resImgLocate} ,#{resLatLng} ,#{resRecommendCookie})
+    </insert>
+
+    <select id="resMaxIndex" resultType="int">
+        select max(resIndex) from restaurantInfo limit 1;
+    </select>
+
+    <select id="findByResIndex" resultType="HashMap">
+        select * from restaurantInfo where resIndex = #{resIndex};
+    </select>
+
+    <select id="findResAll" resultType="HashMap">
+        select * from restaurantInfo;
+    </select>
+
+    <select id="resDescList" resultType="HashMap">
+        select * from restaurantInfo order by resPostDate desc;
+    </select>
+
+    <select id="resRecommendAscList" resultType="HashMap">
+        select * from restaurantInfo order by resRecommend desc;
+    </select>
+
+    <select id="resRandomList" resultType="HashMap">
+        select * from restaurantInfo order by rand();
+    </select>
+
+    <select id="findResSearch" resultType="HashMap">
+        select *
+        from restaurantInfo
+        where resComment like #{resSearch} || resPostName like #{resSearch} || resCategory like #{resSearch} || resLocate like #{resSearch}
+        order by resRecommend desc;
+    </select>
+
+    <select id="findByResCategory" resultType="HashMap">
+        select *
+        from restaurantInfo
+        where resCategory = '${resCategory}' || resLocate= '${resCategory}'
+        order by resRecommend desc;
+    </select>
+
+    <update id="resUpdate">
+        update restaurantInfo
+        set resCategory = '${resCategory}' , resPostName = '${resPostName}' , resName = '${resName}' , resComment = '${resComment}' , resLocate = '${resLocate}', resImgLocate = '${resImgLocate}' , resLatLng = '${resLatLng}'
+        where resIndex = '${resIndex}';
+    </update>
+
+    <update id="resRecUpdate">
+        update restaurantInfo
+        set resRecommend = resRecommend + ${resRecommend}, resRecommendCookie = concat(resRecommendCookie,'${resRecommendCookie}')
+        where resIndex = '${resIndex}';
+
+    </update>
+
+    <select id="resDelete">
+        delete from restaurantInfo where resIndex  = ${resIndex};
+    </select>
+</mapper>

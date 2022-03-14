@@ -1,0 +1,100 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/fostingList/fostingAllList.css">
+</head>
+<body>
+<!--헤드바-->
+<header>
+    <div class="header_left">
+        <a href="/" class="header_logo"><img src="/upload/file/fostingLogo.png" alt=""></a>
+        <ul class="header_menu">
+            <li><a href="/Restaurant/AllList" class="food_list">음식 목록</a></li>
+            <li><a href="/Restaurant/Map" class="food_map">지도</a></li>
+            <li><a href="/Restaurant/post" class="respost">나의 맛집 알리기</a></li>
+            <li><a href="/logout" class="logout hidden" id="header_logout">로그아웃</a></li>
+            <li><a href="/login" class="login" id="header_login">로그인</a></li>
+            <li><a href="/signUp" class="signUp" id="header_signUp">회원가입</a></li>
+        </ul>
+    </div>
+    <div class="header_right">
+        <form action="/Restaurant/list/search" method="post">
+            <input type="text" placeholder="음식점 또는 키워드               " name="search" autocomplete="off">
+            <button type="submit">검색</button>
+        </form>
+    </div>
+</header>
+<!--분류 나누기-->
+<div class="container">
+    <div class="category">
+        <form action="/Restaurant/AllList/*" id="category_form">
+            <ul>
+                <li>
+                    <select name="category_food" class="category_food" onchange="getPost('01')">
+                        <option value="분류">분류</option>
+                        <option value="중국집">중국집</option>
+                        <option value="분식집">분식집</option>
+                        <option value="치킨">치킨</option>
+                        <option value="일식">일식</option>
+                        <option value="파스타">파스타</option>
+                        <option value="카페">카페</option>
+                        <option value="빵">빵</option>
+                    </select>
+                </li>
+                <li>
+                    <select name="category_locate" class="category_locate" onchange="getPost('02')">
+                        <option value="지역">지역</option>
+                        <option value="서울">서울</option>
+                        <option value="인천">인천</option>
+                        <option value="부산">부산</option>
+                        <option value="대구">대구</option>
+                        <option value="광주">광주</option>
+                        <option value="대전">대전</option>
+                        <option value="울산">울산</option>
+                    </select>
+                </li>
+                <li>
+                    <select name="category_recommend" class="category_recommend" onchange="getPost('03')">
+                        <option value="별점">별점</option>
+                        <option value="높은순">높은순</option>
+                        <option value="낮은순">낮은순</option>
+                        <option value="많은순">많은순</option>
+                    </select>
+                </li>
+                <li>
+                    <select name="category_count" class="category_count" onchange="getPost('04')">
+                        <option value="인기">인기</option>
+                        <option value="방문수">방문수</option>
+                        <option value="리뷰">리뷰</option>
+                        <option value="댓글">댓글</option>
+                    </select>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <!--음식점 리스트-->
+    <div class="fosting_block">
+        <div class="fosting_content" th:each="restaurantInfo : ${restaurantInfos}">
+            <a th:href="@{/Restaurant/list/{resId}(resId=${restaurantInfo.resIndex})}" methods="post"><img
+                    th:src="@{/upload/file/{ril}(ril=${restaurantInfo.resImgLocate})}" alt=""></a>
+            <ul>
+                <li th:text="${restaurantInfo.resPostName}">포스팅 될 이름</li>
+                <li th:text="${restaurantInfo.resName}">음식점 위치</li>
+                <li th:text="${restaurantInfo.resIndex}">게시된 날짜</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="/js/header.js"></script>
+<script src="/js/fostingList/fostingListFormChange.js"></script>
+</body>
+</html>

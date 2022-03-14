@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/login/login.css">
+</head>
+<body>
+<div class="login_container">
+    <span class="login_text">로그인</span>
+    <form action="/login" id="Login">
+        <input type="text" name="id" id="id" placeholder="아이디를 입력하세요  "  autofocus autocomplete="off">
+        <input type="password" name="pass" id="pass" placeholder="비밀번호를 입력하세요"  autocomplete="off">
+        <button id="Button">로그인</button>
+    </form>
+    <span class="login_container_signUp">아이디가 없으신가요?   </span><a href="/signUp">회원가입</a>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/login/Login.js"></script>
+</body>
+</html>

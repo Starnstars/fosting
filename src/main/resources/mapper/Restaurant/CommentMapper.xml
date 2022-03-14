@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lee.fosting.Restaurant.repository.ResCommentMapper">
+
+    <insert id="commentSave">
+        insert into resComment (commentIndex    ,resIndex   ,commentMember    ,commentTime    ,comment)
+        VALUES                 (#{commentIndex} ,#{resIndex},#{commentMember} ,#{commentTime} ,#{comment})
+    </insert>
+
+    <select id="commentMaxIndex" resultType="int">
+        select max(commentIndex) from resComment limit 1;
+    </select>
+
+    <select id="commentFindAll" resultType="HashMap">
+        select * from resComment where resIndex = ${resIndex} order by commentIndex;
+    </select>
+
+    <select id="commentFindByIndex" resultType="HashMap">
+        select * from resComment where commentIndex = ${commentIndex};
+    </select>
+</mapper>

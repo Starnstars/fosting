@@ -1,0 +1,38 @@
+MemberInfo
+create table memberInfo(
+memberIndex bigint primary key,
+memberId varchar(20),
+memberRole varchar(20),
+memberName varchar(20),
+memberPass varchar(50),
+dateCreated datetime,
+memberPhone varchar(40),
+memberEmail varchar(50),
+lastCheck datetime,
+cookie text
+)
+
+RestaurantInfo
+create table restaurantInfo(
+resIndex bigint primary key,
+resCategory varchar(30),
+resPostName varchar(200),
+resName varchar(100),
+resComment varchar(300),
+resLocate varchar(30),
+resMember varchar(20),
+resRecommend bigint,
+resPostDate datetime,
+resImgLocate text,
+resLatLng varchar(300),
+resRecommendCookie text
+)
+
+ResComment
+create table resComment(
+commentIndex bigint primary key,
+resIndex bigint,
+commentMember varchar(20),
+commentTime timestamp,
+comment text
+)

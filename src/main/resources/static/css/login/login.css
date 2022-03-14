@@ -1,0 +1,55 @@
+.login_container{
+  border : 1px solid black;
+  border-radius : 15px;
+  padding : 20px;
+
+  margin : 30px 30%;
+}
+
+.login_container .login_text{
+  font-size : 22px;
+  font-weight : 500;
+  line-height : 1.5;
+}
+
+.login_container form input{
+  all : unset;
+  display : block;
+  margin-top :15px;
+  font-size : 18px;
+}
+
+.login_container form input:focus{
+  text-decoration : underline;
+  background : #D3D3D3;
+}
+
+.login_container form button{
+  all : unset;
+  width :50px;
+  height : 30px;
+  margin-bottom : 20px;
+}
+
+.login_container form button:hover{
+  cursor:pointer;
+  background : #D3D3D3;
+  color : red;
+}
+
+.login_container .login_container_signUp{
+  font-size : 16px;
+  font-weight : 500;
+  color : #666;
+}
+
+.login_container a{
+  all : unset;
+  font-size : 14px;
+  font-weight : 400;
+}
+
+.login_container a:hover{
+  cursor:pointer;
+  color : red;
+}

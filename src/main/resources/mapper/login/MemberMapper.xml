@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lee.fosting.login.repository.MemberMapper">
+
+    <insert id="signUp">
+        INSERT INTO memberInfo (memberIndex,memberName, memberPass,memberId,memberRole,memberPhone,memberEmail,dateCreated)
+        VALUES                 (#{index}   ,#{name}   ,#{pass}    ,#{id}   ,#{role}   ,#{phone}   ,#{email}   ,#{dateCreated})
+    </insert>
+
+    <select id="memberMaxIndex" resultType="int">
+        select max(memberIndex) from memberInfo limit1;
+    </select>
+
+    <select id="findById" resultType="HashMap">
+        select memberId,memberPass from memberInfo where memberId = #{memberId};
+    </select>
+
+    <select id="findIndexById" resultType="int">
+        select memberIndex from memberInfo where memberId = '${memberId}'
+    </select>
+
+</mapper>

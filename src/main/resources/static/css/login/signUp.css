@@ -1,0 +1,45 @@
+.signUp_container{
+  border : 1px solid black;
+  border-radius : 15px;
+  padding : 20px;
+
+  margin : 30px 30%;
+  width : auto;
+  height : auto;
+}
+
+.signUp_container .signUp_text{
+  font-size : 22px;
+  font-weight : 500;
+  line-height : 1.5;
+}
+
+.signUp_container form{
+  margin-right : 20px;
+}
+
+.signUp_container form input{
+  all : unset;
+  display : block;
+  margin-top : 15px;
+  font-size : 18px;
+  width : 230px;
+}
+
+.signUp_container form input:focus{
+  text-decoration : underline;
+  background : #D3D3D3;
+}
+
+.signUp_container form button{
+  all : unset;
+  width : 70px;
+  height : 30px;
+  margin-top : 20px;
+}
+
+.signUp_container form button:hover{
+  cursor:pointer;
+  background : #D3D3D3;
+  color : red;
+}
