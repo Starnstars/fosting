@@ -19,8 +19,8 @@ public class HomeController {
     @Autowired
     PostRestService postRestService;
 
-    @GetMapping("/")
-    public String home(Model model) {
+//    @GetMapping("/")
+//    public String home(Model model) {
 //        List<HashMap<String, Object>> resDescLists = postRestService.resDescList();
 //        List<HashMap<String, Object>> resRecommendAscLists = postRestService.resRecommendAscList();
 //        List<HashMap<String, Object>> resRandomLists = postRestService.resRandomList();
@@ -35,8 +35,12 @@ public class HomeController {
 //
 //        String version = SpringVersion.getVersion();
 //        System.out.println("version = " + version);
-        return "/home";
-    }
+//        return "/home";
+//    }
+@GetMapping("/")
+public String home() {
+    return "/home";
+}
 
     @GetMapping("/test")
     public String test() {
