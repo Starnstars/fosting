@@ -4,6 +4,7 @@ plugins {
 	id 'java'
 }
 
+
 jar {
 	enabled = false
 }
