@@ -21,20 +21,20 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        List<HashMap<String, Object>> resDescLists = postRestService.resDescList();
-        List<HashMap<String, Object>> resRecommendAscLists = postRestService.resRecommendAscList();
-        List<HashMap<String, Object>> resRandomLists = postRestService.resRandomList();
-
-        imgLocate(resDescLists);
-        imgLocate(resRecommendAscLists);
-        imgLocate(resRandomLists);
-
-        model.addAttribute("resDescLists", resDescLists);
-        model.addAttribute("resRecommendAscLists", resRecommendAscLists);
-        model.addAttribute("resRandomLists", resRandomLists);
-
-        String version = SpringVersion.getVersion();
-        System.out.println("version = " + version);
+//        List<HashMap<String, Object>> resDescLists = postRestService.resDescList();
+//        List<HashMap<String, Object>> resRecommendAscLists = postRestService.resRecommendAscList();
+//        List<HashMap<String, Object>> resRandomLists = postRestService.resRandomList();
+//
+//        imgLocate(resDescLists);
+//        imgLocate(resRecommendAscLists);
+//        imgLocate(resRandomLists);
+//
+//        model.addAttribute("resDescLists", resDescLists);
+//        model.addAttribute("resRecommendAscLists", resRecommendAscLists);
+//        model.addAttribute("resRandomLists", resRandomLists);
+//
+//        String version = SpringVersion.getVersion();
+//        System.out.println("version = " + version);
         return "/home";
     }
 
