@@ -34,8 +34,6 @@ public class HomeController {
         model.addAttribute("resRecommendAscLists", resRecommendAscLists);
         model.addAttribute("resRandomLists", resRandomLists);
 
-        String version = SpringVersion.getVersion();
-        System.out.println("version = " + version);
         return "/home";
     }
 
