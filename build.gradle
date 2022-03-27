@@ -4,14 +4,13 @@ plugins {
 	id 'java'
 }
 
-jar {
-	enabled = false
-}
-
-
 group = 'com.lee'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+jar {
+	enabled = false
+}
 
 configurations {
 	compileOnly {
