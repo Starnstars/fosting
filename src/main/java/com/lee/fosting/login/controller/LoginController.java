@@ -19,7 +19,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String getLogin() {
-        return "/login/login";
+        return "login/login";
     }
 
     @PostMapping("/login")
@@ -34,13 +34,13 @@ public class LoginController {
             response.addCookie(cookie);
             return "redirect:/";
         } else {
-            return "/error";
+            return "error";
         }
     }
 
     @GetMapping("/signUp")
     public String getSignUp() {
-        return "/login/signUp";
+        return "login/signUp";
     }
 
     @PostMapping("/signUp")

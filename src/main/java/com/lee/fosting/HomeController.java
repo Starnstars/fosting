@@ -34,18 +34,18 @@ public class HomeController {
         model.addAttribute("resRecommendAscLists", resRecommendAscLists);
         model.addAttribute("resRandomLists", resRandomLists);
 
-        return "/home";
+        return "home";
     }
 
     @GetMapping("/test")
     public String test() {
-        return "/Restaurant/filetest";
+        return "Restaurant/filetest";
     }
 
     @PostMapping("/test")
     public String filetest() {
 
-        return "/Restaurant/filetest";
+        return "Restaurant/filetest";
     }
 
     private void imgLocate(List<HashMap<String, Object>> restaurantInfos) {

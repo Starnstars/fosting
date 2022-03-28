@@ -34,7 +34,7 @@ public class PostController {
 
     @GetMapping("/post")
     public String getRespost() {
-        return "/Restaurant/post";
+        return "Restaurant/post";
     }
 
     @PostMapping("/post")
@@ -46,21 +46,21 @@ public class PostController {
     public String getAllList(Model model) {
         List<HashMap<String, Object>> restaurantInfos = postRestService.resAllList();
         model.addAttribute("restaurantInfos", restaurantInfos);
-        return "/Restaurant/AllList";
+        return "Restaurant/AllList";
     }
 
     @GetMapping("/Map")
     public String getMap(Model model) {
         List<HashMap<String, Object>> restaurantInfos = postRestService.resAllList();
         model.addAttribute("restaurantInfos", restaurantInfos);
-        return "/Restaurant/Map";
+        return "Restaurant/Map";
     }
 
     @PostMapping(value = {"/AllList/{category}"})
     public String postCategory(@PathVariable("category") String resCategory, Model model) {
         List<HashMap<String, Object>> restaurantInfos = postRestService.findByResCategory(resCategory);
         model.addAttribute("restaurantInfos", restaurantInfos);
-        return "/Restaurant/AllList";
+        return "Restaurant/AllList";
     }
 
     @GetMapping(value = {"/list/{idx:^\\d+$}"})
@@ -69,21 +69,21 @@ public class PostController {
         List<HashMap<String, Object>> restaurantComments = commentRestService.commentFindAllByIndex(resIndex);
         model.addAttribute("restaurantInfo", restaurantInfo);
         model.addAttribute("restaurantComments", restaurantComments);
-        return "/fostingList/ListForm";
+        return "fostingList/ListForm";
     }
 
     @PostMapping("/list/search")
     public String listSearch(@RequestParam("search") String resSearch, Model model) {
         List<HashMap<String, Object>> restaurantInfos = postRestService.findResSearch("%" + resSearch + "%");
         model.addAttribute("restaurantInfos", restaurantInfos);
-        return "/Restaurant/AllList";
+        return "Restaurant/AllList";
     }
 
     @GetMapping("/update")
     public String getResPostUpdate(@RequestParam("resIndex") int resIndex, Model model) {
         HashMap<String, Object> restaurantInfo = postRestService.findByResIndex(resIndex);
         model.addAttribute("restaurantInfo", restaurantInfo);
-        return "/Restaurant/update";
+        return "Restaurant/update";
     }
 
     @PostMapping("/update")
@@ -100,7 +100,7 @@ public class PostController {
 
     @PostMapping("/list/recommend")
     public String recommendSave() {
-        return "/error";
+        return "error";
     }
 
 
