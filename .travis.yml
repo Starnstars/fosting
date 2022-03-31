@@ -19,3 +19,6 @@ script: "./gradlew clean build"
     email:
       recipients:
         -alstlr815@gmail.com
+
+
+
