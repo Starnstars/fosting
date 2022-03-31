@@ -17,7 +17,6 @@ notifications:
       - alstlr815@gmail.com
 script: "./gradlew clean build"
 
-
 before_deploy:
   - zip -r fosting
   - mkdir -p deploy
