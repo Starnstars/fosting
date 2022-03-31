@@ -33,6 +33,16 @@ deploy:
     local_dir: deploy
     wait-until-deployed: true
 
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: fosting-build
+    key: fosting.zip
+    bundle_type: zip
+    application: fosting
+    deployment_group: fosting
+    region: ap-northeast-2
+    wait-until-deployed: true
 
 #language: java
 #jdk:
