@@ -18,7 +18,7 @@ notifications:
 script: "./gradlew clean build"
 
 before_deploy:
-  - zip -r fosting
+  - zip -r fosting *
   - mkdir -p deploy
   - mv fosting.zip deploy/fosting.zip
 
