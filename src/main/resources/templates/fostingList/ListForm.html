@@ -38,25 +38,24 @@
 </header>
 <!--음식 목록-->
 <div class="fost_container">
-    <p class="fost_Name" th:text="${restaurantInfo.resPostName}">포스팅 된 이름
-        <p th:text="${restaurantInfo.resMember}">작성자</p>
-    </p>
+    <p class="fost_Name" th:text="${restaurantInfo.resPostName}">포스팅 된 이름</p>
+    <p class="fost_Writer" th:text="${restaurantInfo.resMember}">작성자</p>
     <div class="fost_contents">
         <div class="fost_content">
             <img th:src="@{/upload/file/{ril}(ril=${restaurantInfo.resImgLocate})}" alt="">
             <p th:text="${restaurantInfo.resComment}">포스팅 내용</p>
         </div>
         <div class="fost_map_container">
-            <div class="fost_SOMETHING"></div>
-<!--            <div class="fost_SOMETHING">무언가가 들어갈 div</div>-->
             <div class="fost_map" id="fost_map">
                 <input th:value="${restaurantInfo.resLatLng}" class="map_latlng"></input>
             </div>
+            <div class="fost_SOMETHING"></div>
+            <!--            <div class="fost_SOMETHING">무언가가 들어갈 div</div>-->
         </div>
     </div>
     <div class="fost_star">
         <span id="resRecommend" th:text="${restaurantInfo.resRecommend}">현재 별점</span>
-<!--        <span id="resRecommend" th:text="${restaurantInfo.resRecommend}">현재 별점</span>-->
+        <!--        <span id="resRecommend" th:text="${restaurantInfo.resRecommend}">현재 별점</span>-->
         <form action="/list/recommend" method="post">
             <div class="star"></div>
             <input type="hidden" name="recIndex" id="recIndex" th:value="${restaurantInfo.resIndex}">
@@ -124,6 +123,7 @@
             }
         });
     })
+
 </script>
 </body>
 </html>

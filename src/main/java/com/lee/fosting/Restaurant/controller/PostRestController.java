@@ -82,7 +82,7 @@ public class PostRestController {
     }
 
     @GetMapping("/Delete")
-    public ResponseEntity<?> resGetDelete(String resIndex, HttpServletRequest request){
+    public ResponseEntity<?> resGetDelete(String resIndex, HttpServletRequest request) {
         boolean flag = cookieCheck(request);
         if (flag) {  //쿠키 있을경우
             //쿠키 확인해서 게시자인지 비교
@@ -145,7 +145,8 @@ public class PostRestController {
 
         if (flag) {
             String cookieName = getCookieName(request);
-            CommentDTO commentDTO = new CommentDTO(0, Integer.parseInt(resIndex), cookieName, new Timestamp(System.currentTimeMillis()), postComment);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            CommentDTO commentDTO = new CommentDTO(0, Integer.parseInt(resIndex), cookieName, sdf.format(new Timestamp(System.currentTimeMillis())), postComment);
 //        CommentDTO commentDTO = new CommentDTO(0, Integer.parseInt(resIndex), "123", LocalDate.now(), postComment);
             commentRestService.commentSave(commentDTO);
 

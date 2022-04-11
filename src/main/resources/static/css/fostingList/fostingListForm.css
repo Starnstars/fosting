@@ -10,7 +10,9 @@
   margin-bottom : 30px;
 }
 
-
+.fost_container .fost_Writer{
+  margin-bottom : 30px;
+}
 
 .fost_container .fost_contents{
   display : flex;
@@ -24,7 +26,8 @@
 }
 
 .fost_container .fost_contents .fost_content img{
-  width : 50%
+  width : 50%;
+  padding-bottom : 30px;
 }
 
 .fost_container .fost_contents .fost_map_container{

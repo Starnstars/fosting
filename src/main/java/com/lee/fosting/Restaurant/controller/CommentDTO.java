@@ -1,16 +1,17 @@
 package com.lee.fosting.Restaurant.controller;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 public class CommentDTO {
     private int commentIndex;
     private int resIndex;
     private String commentMember;
-    private Timestamp commentTime;
+    private String commentTime;
     private String comment;
 
-    public CommentDTO(int commentIndex, int resIndex, String commentMember, Timestamp commentTime, String comment) {
+    public CommentDTO(int commentIndex, int resIndex, String commentMember,String commentTime, String comment) {
         this.commentIndex = commentIndex;
         this.resIndex = resIndex;
         this.commentMember = commentMember;
@@ -42,11 +43,11 @@ public class CommentDTO {
         this.commentMember = commentMember;
     }
 
-    public Timestamp getCommentTime() {
+    public String getCommentTime() {
         return commentTime;
     }
 
-    public void setCommentTime(Timestamp commentTime) {
+    public void setCommentTime(String commentTime) {
         this.commentTime = commentTime;
     }
 
