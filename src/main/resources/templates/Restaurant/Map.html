@@ -44,10 +44,10 @@
                 <a th:href="@{/Restaurant/list/{resId}(resId=${restaurantInfo.resIndex})}" methods="post"><img
                         th:src="@{/upload/file/{ril}(ril=${restaurantInfo.resImgLocate})}" alt=""></a>
                 <ul>
-                    <li th:text="${restaurantInfo.resPostName}">포스팅 될 이름</li>
-                    <li th:text="${restaurantInfo.resName}">음식점 위치</li>
-                    <li th:text="${restaurantInfo.resIndex}">게시된 날짜</li>
-                    <li th:text="${restaurantInfo.resRecommend}">별점</li>
+                    <li th:text="${restaurantInfo.resPostName}">포스팅 된 이름</li>
+                    <li th:text="${restaurantInfo.resName}">음식점 이름</li>
+<!--                    <li th:text="${restaurantInfo.resIndex}">게시된 날짜</li>-->
+<!--                    <li th:text="${restaurantInfo.resRecommend}">별점</li>-->
                 </ul>
             </div>
         </div>
